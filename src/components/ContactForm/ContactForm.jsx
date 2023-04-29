@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/operations';
 import css from './ContactForm.module.css';
 
-const ContactForm = () => {
+export const ContactForm = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.contacts);
 
@@ -54,4 +54,3 @@ const ContactForm = () => {
     </form>
   );
 };
-export default ContactForm;
