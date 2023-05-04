@@ -1,14 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {fetchContacts} from '../../redux/contacts/operations';
+import { fetchContacts } from '../../redux/contacts/operations';
 import ContactItem from '../ContactItem/ContactItem';
+import {
+  selectItems,
+  selectIsLoading,
+  selectError,
+  selectFilter,
+} from '../../redux/contacts/selectors';
 import Loader from '../Loader/Loader';
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
 const ContactList = () => {
-  const { items, isLoading, error } = useSelector(state => state.contacts);
-  const filterValue = useSelector(state => state.filter);
+  const items = useSelector(selectItems);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const filterValue = useSelector(selectFilter);
+  
   const filteredContacts = items.filter(contact =>
     contact.name.toLowerCase().includes(filterValue.toLowerCase())
   );

@@ -1,12 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import Contacts from '../pages/Contacts/Contacts';
-import Layout from './Layout/Layout';
-import LoginForm from '../pages/LoginForm/LoginForm';
-import RegisterForm from '../pages/RegisterForm/RegisterForm';
-import Home from '../pages/Home/Home';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, lazy } from 'react';
+
+import Layout from './Layout';
+// import LoginForm from '../pages/LoginForm/LoginForm';
+// import RegisterForm from '../pages/RegisterForm/RegisterForm';
+// import Home from '../pages/Home/Home';
+// import Contacts from '../pages/Contacts/Contacts';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
+import { PublicRoute } from './PublicRoute/PublicRoute';
 import { refreshUser } from '../redux/auth/operations';
+import { selectIsRefreshing } from '../redux/auth/selectors';
+
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../pages/RegisterForm/RegisterForm'));
+const LoginPage = lazy(() => import('../pages/LoginForm/LoginForm'));
+const ContactsPage = lazy(() => import('../pages/Contacts/Contacts'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,13 +23,26 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
+  const isRefreshing = useSelector(selectIsRefreshing);
+  console.log(isRefreshing);
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/contacts" element={<Contacts />} />
+        <Route index element={<HomePage />} />
+        <Route
+          path="/register"
+          element={<PublicRoute>{<RegisterPage />}</PublicRoute>}
+        />
+        <Route
+          path="/login"
+          element={<PublicRoute>{<LoginPage />}</PublicRoute>}
+        />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute>{<ContactsPage />}</PrivateRoute>}
+        />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Route>
     </Routes>

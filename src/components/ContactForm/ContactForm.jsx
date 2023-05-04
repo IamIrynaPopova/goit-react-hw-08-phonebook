@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {addContact }from '../../redux/contacts/operations';
+import { addContact } from '../../redux/contacts/operations';
+import { selectItems } from '../../redux/contacts/selectors';
 import css from './ContactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const items  = useSelector(state => state.contacts.items
-);
+  const items = useSelector(selectItems);
 
   const addUser = e => {
     e.preventDefault();
