@@ -19,7 +19,7 @@ const ContactForm = () => {
     dispatch(
       addContact({
         name: name,
-        phone: number,
+        number: number,
       })
     );
     form.reset();
