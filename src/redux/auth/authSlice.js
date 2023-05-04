@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createUser } from './operations';
 import { logIn } from './operations';
 import { logOut } from './operations';
+import { refreshUser } from './operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -27,17 +28,17 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     });
-    // [refreshUser.pending](state) {
-    //   state.isRefreshing = true;
-    // },
-    // [refreshUser.fulfilled](state, action) {
-    //   state.user = action.payload;
-    //   state.isLoggedIn = true;
-    //   state.isRefreshing = false;
-    // },
-    // [refreshUser.rejected](state) {
-    //   state.isRefreshing = false;
-    // },
+    builder.addCase(refreshUser.pending, state => {
+      state.isRefreshing = true;
+    });
+    builder.addCase(refreshUser.fulfilled, (state, { payload }) => {
+      state.isRefreshing = false;
+      state.isLoggedIn = true;
+      state.user = payload;
+    });
+    builder.addCase(refreshUser.rejected, state => {
+      state.isRefreshing = false;
+    });
   },
 });
 
