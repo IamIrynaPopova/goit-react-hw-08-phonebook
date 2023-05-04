@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/operations';
+import {deleteContact} from '../../redux/contacts/operations';
 import css from './ContactItem.module.css';
 import PropTypes from 'prop-types';
 
-export const ContactItem = ({ name, phone, id }) => {
+const ContactItem = ({ name, phone, id }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteContact(id));
@@ -23,3 +23,5 @@ ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
 };
+
+export default ContactItem;

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {GetFilter } from '../../redux/filterSlice';
+import {GetFilter} from '../../redux/contacts/filterSlice';
 import css from './Filter.module.css';
 
-export const Filter = () => {
+const Filter = () => {
   const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
@@ -25,3 +25,5 @@ export const Filter = () => {
     </>
   );
 };
+
+export default Filter;

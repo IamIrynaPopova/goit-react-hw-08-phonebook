@@ -1,25 +1,21 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { Contacts } from '../pages/Contacts/Contacts';
-import { RegisterForm } from '../pages/RegisterForm/RegisterForm';
-import { LoginForm } from '../pages/LoginForm/LoginForm';
+import { Routes, Route } from 'react-router-dom';
+import Contacts from '../pages/Contacts/Contacts';
+import Layout from './Layout/Layout';
+import LoginForm from '../pages/LoginForm/LoginForm';
+import RegisterForm from '../pages/RegisterForm/RegisterForm';
+import Home from '../pages/Home/Home';
 
-export const App = () => {
+const App = () => {
   return (
-    <>
-      <div>
-        <header>
-          <nav>
-            <NavLink to="/register">Register</NavLink>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/contacts">Contacts</NavLink>
-          </nav>
-        </header>
-      </div>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/contacts" element={<Contacts />} />
-      </Routes>
-    </>
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Route>
+    </Routes>
   );
 };
+export default App;

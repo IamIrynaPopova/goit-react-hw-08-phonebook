@@ -1,7 +1,7 @@
 import { Hearts } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <Hearts
       height="60"
@@ -14,3 +14,4 @@ export const Loader = () => {
     />
   );
 };
+export default Loader;

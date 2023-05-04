@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/operations';
-import { ContactItem } from '../ContactItem/ContactItem';
-import { Loader } from '../Loader/Loader';
+import {fetchContacts} from '../../redux/contacts/operations';
+import ContactItem from '../ContactItem/ContactItem';
+import Loader from '../Loader/Loader';
 import css from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
-export const ContactList = () => {
+const ContactList = () => {
   const { items, isLoading, error } = useSelector(state => state.contacts);
   const filterValue = useSelector(state => state.filter);
   const filteredContacts = items.filter(contact =>
@@ -41,3 +41,5 @@ ContactList.propTypes = {
     })
   ),
 };
+
+export default ContactList;
