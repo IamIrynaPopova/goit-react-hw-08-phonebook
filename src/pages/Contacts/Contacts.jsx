@@ -1,16 +1,16 @@
 import ContactList from '../../components/ContactList/ContactList';
 import Filter from '../../components/Filter/Filter';
 import ContactForm from '../../components/ContactForm/ContactForm';
-import css from './Contacts.module.css';
+import {ContactsStyles } from './ContactsStyles'
 
 const Contacts = () => {
   return (
-    <div className={css.wrapper}>
+    <ContactsStyles>
       <h1>Phonebook</h1>
       <ContactForm />
       <Filter />
       <ContactList />
-    </div>
+    </ContactsStyles>
   );
 };
 export default Contacts;

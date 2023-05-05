@@ -1,6 +1,7 @@
-import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
-import {createUser }from '../../redux/auth/operations';
+import { createUser } from '../../redux/auth/operations';
+import { TextField, Button } from '@mui/material';
+import { RegisterFormStyles } from './RegisterFormStyles';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -19,21 +20,42 @@ const RegisterForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input type="text" name="name" />
-      </label>
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <RegisterFormStyles onSubmit={handleSubmit} autoComplete="off">
+      <TextField
+        size="small"
+        label="Name"
+        variant="outlined"
+        placeholder="Enter your name"
+        type="text"
+        name="name"
+        required
+      />
+
+      <TextField
+        size="small"
+        label="Email"
+        variant="outlined"
+        placeholder="example@gmail.com"
+        type="email"
+        name="email"
+        required
+      />
+
+      <TextField
+        size="small"
+        label="Password"
+        variant="outlined"
+        placeholder="Password"
+        type="password"
+        name="password"
+        required
+      />
+
+      <Button variant="contained" type="submit">
+        Register
+      </Button>
+    </RegisterFormStyles>
   );
 };
+
 export default RegisterForm;
