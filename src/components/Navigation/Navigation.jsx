@@ -10,6 +10,7 @@ const Navigation = () => {
       <NavLink className={css.link} to="/">
         Home
       </NavLink>
+
       {isLoggedIn && (
         <NavLink className={css.link} to="/contacts">
           Contacts
