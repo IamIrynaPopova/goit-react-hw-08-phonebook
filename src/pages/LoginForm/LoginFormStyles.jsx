@@ -5,7 +5,6 @@ export const LoginFormStyles = styled('form')({
   flexDirection: 'column',
   maxWidth: '400px',
   margin: '0 auto',
-
   padding: '10px',
   border: '2px solid #989595',
   borderRadius: '10px',

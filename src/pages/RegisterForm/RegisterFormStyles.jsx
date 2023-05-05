@@ -6,7 +6,6 @@ export const RegisterFormStyles = styled('form')({
   gap: '20px',
   maxWidth: '400px',
   margin: '0 auto',
- 
   padding: '10px',
   border: '2px solid #989595',
   borderRadius: '10px',
