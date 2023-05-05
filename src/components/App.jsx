@@ -24,7 +24,6 @@ const App = () => {
   }, [dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);
-  console.log(isRefreshing);
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
